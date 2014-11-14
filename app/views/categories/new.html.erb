@@ -1,0 +1,25 @@
+<%= render 'share/content_title', title: "New Category" %>
+<%= render 'posts/errors', object: @category %>
+<br/>
+<div class="row">
+<h4  class="pull-left">The present categories:</h4>
+</div>
+<div>
+  <ul>
+  <% @categories.each do |cat| %>
+  <span class="badge">
+    <%= cat.name %>
+  </span>
+  <% end %>
+  </ul>
+</div>
+
+
+<div class="well">
+<%= form_for @category do |f|%>
+<%= f.label :name %>
+<%= f.text_field :name %>
+<br/>
+<%= f.submit "Create Category",class: "btn btn-primary" %>
+<% end %>
+</div>

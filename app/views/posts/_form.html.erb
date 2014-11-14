@@ -1,0 +1,26 @@
+<%= render 'posts/errors', object: @post %>
+
+<div class="well">
+<%= form_for @post do |f|%> 
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <br/>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <br/>
+  <%= f.label :url %>
+  <%= f.text_field :url %>
+  <br/>
+    <div class="control-group">
+    <%= f.label "Categories" %>
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |b| %>
+    <% b.label(class: "check_box inline") { b.check_box(class: "check_box") +b.text } %>
+    <% end %>
+  </div>
+
+  <%= f.submit bottom_name, class: "btn btn-primary" %>
+<% end %> 
+</div>
+
+<%# if @post changed to Post.new, it will work. form_for does a lot of guessings. for example  if @post is a new post object, if so form_for will guess the HTML method is POST, the URL is /posts %>
+<%# if @post changed to Post.find (some intger), it does a lot of geussings, if @post is existing, if so ,form_for will guess the HTML mehtod is PATCH or PUT, URL is /post/@post_id %>
